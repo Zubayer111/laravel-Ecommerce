@@ -31,6 +31,8 @@ use App\Http\Controllers\HomeController;
 // View Page
 Route::get("/",[HomeController::class, "homePage"]);
 Route::get("/by-category",[CategoryController::class, "categoryPage"]);
+Route::get("/by-brand", [BrandController::class, "ByBrandPage"]);
+Route::get("/policy", [PolicyController::class, "PolicyPage"]);
 
 
 // Brand List
@@ -40,7 +42,7 @@ Route::get("/brand-list",[BrandController::class, "brandList"]);
 Route::get("/category-list",[CategoryController::class, "categoryList"]);
 
 //policy
-Route::get("/policy-type/{type}",[PolicyController::class, "policyType"]);
+Route::get("/policy/{type}",[PolicyController::class, "policyType"]);
 
 // Product List
 Route::get("/list-product-catagory/{id}",[ProductController::class, "listProductByCatagory"]);

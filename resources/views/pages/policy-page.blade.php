@@ -8,7 +8,7 @@
     <script>
         (async () => {
             await Category();
-            await Policy()
+            await Policy();
             $(".preloader").delay(90).fadeOut(100).addClass('loaded');
             await TopBrands();
         })()

@@ -29,39 +29,27 @@
 
 <script>
 
-    async function Policy(){
-        let searchParams=new URLSearchParams(window.location.search);
-        let type=searchParams.get('type');
-
-        if(type==="about"){
+    async function Policy() {
+        let searchParams = new URLSearchParams(window.location.search);
+        let type = searchParams.get("type");
+        if (type==="about"){
             $("#policyName").text("About Us")
-        }
-
-        if(type==="refund"){
+        }if (type==="refund"){
             $("#policyName").text("Refund Policy")
-        }
-
-        if(type==="terms"){
+        }if (type==="terms"){
             $("#policyName").text("Terms & Condition")
-        }
-
-        if(type==="how to buy"){
+        }if (type==="how to buy"){
             $("#policyName").text("How to Buy")
-        }
-
-        if(type==="contact"){
+        }if (type==="contact"){
             $("#policyName").text("Our Contact Details")
-        }
-
-        if(type==="complain"){
+        }if (type==="complain"){
             $("#policyName").text("How to put complain")
         }
 
+        let res = await axios.get("/policy/"+type);
+        console.log(res);
+        let des=res.data["des"]
 
-
-        let res=await axios.get("/PolicyByType/"+type);
-        let des=res.data['des']
         $("#policy").html(des)
     }
-
 </script>
