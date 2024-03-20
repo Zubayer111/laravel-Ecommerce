@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
+    public function LoginPage(){
+        return view('pages.login-page');
+    }
+
+    public function VerifyPage(){
+        return view('pages.verify-page');
+    }
     public function userLogin(Request $request){
         try{
             $userEmail = $request->email;
@@ -42,7 +49,7 @@ class UserController extends Controller
     }
 
     public function userLogOut(){
-        return redirect('/')->cookie('token','',-1);
+        return redirect('/')->cookie('Token','',-1);
     }
     
     

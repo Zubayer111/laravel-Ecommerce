@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class CustomerProfileController extends Controller
 {
+    public function profilePage(){
+        return view('pages.profile-page');
+    }
+
     public function CreateProfile(Request $request){
         $userId = $request->header("id");
         $request->merge(["user_id" => $userId]);

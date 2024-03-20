@@ -15,6 +15,7 @@ use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\ProductSliderController;
 use App\Http\Controllers\CustomerProfileController;
 use App\Http\Controllers\HomeController;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,12 @@ Route::get("/",[HomeController::class, "homePage"]);
 Route::get("/by-category",[CategoryController::class, "categoryPage"]);
 Route::get("/by-brand", [BrandController::class, "ByBrandPage"]);
 Route::get("/policy", [PolicyController::class, "PolicyPage"]);
+Route::get('/details', [ProductController::class, 'Details']);
+Route::get('/login', [UserController::class, 'LoginPage']);
+Route::get('/verify', [UserController::class, 'VerifyPage']);
+Route::get('/wish', [ProductController::class, 'wishPage']);
+Route::get('/cart', [ProductController::class, 'cartPage']);
+Route::get('/profile', [CustomerProfileController::class, 'profilePage']);
 
 
 // Brand List

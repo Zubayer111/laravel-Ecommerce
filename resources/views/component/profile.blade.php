@@ -139,7 +139,7 @@
 
 
         $(".preloader").delay(90).fadeIn(100).removeClass('loaded');
-        let res = await axios.post("/CreateProfile",postBody);
+        let res = await axios.post("/createProfile",postBody);
         $(".preloader").delay(90).fadeOut(100).addClass('loaded');
         if(res.data['msg']==="success"){
             alert("Request Successful")
@@ -152,7 +152,8 @@
 
       async function ProfileDetails() {
 
-          let res = await axios.get("/ReadProfile");
+          let res = await axios.get("/readProfile");
+          
           if (res.data['data'] !== null) {
 
               document.getElementById('cus_name').value = res.data['data']['cus_name']

@@ -20,7 +20,7 @@ class TokenAuthenticate
         $token = $request->cookie("Token");
         $result = JWTToken::ReadToken($token);
         if($result == "unauthorized"){
-              return redirect("/userLogin");
+            return ResponseHelper::output('unauthorized',null,401);
         }
         else{
             $request->headers->set("email",$result->userEmail);

@@ -67,7 +67,7 @@
 
 
 
-<script>
+{{-- <script>
 
 
     $('.plus').on('click', function() {
@@ -233,4 +233,125 @@
 
 
 
+</script> --}}
+
+<script>
+    // $('.plus').on('click', function() {
+    //     if ($(this).prev().val()) {
+    //         $(this).prev().val(+$(this).prev().val() + 1);
+    //     }
+    // });
+    // $('.minus').on('click', function() {
+    //     if ($(this).next().val() > 1) {
+    //         if ($(this).next().val() > 1) $(this).next().val(+$(this).next().val() - 1);
+    //     }
+    // });
+
+    let searchParams = new URLSearchParams(window.location.search);
+    let id = searchParams.get("id");
+    async function productDetails() {
+        let res = await axios.get("/product-detail/" + id);
+        //console.log(res);
+        let Details = await res.data["data"];
+
+        document.getElementById('product_img1').src=Details[0]['img1'];
+        document.getElementById("img1").setAttribute("src", Details[0]["img1"]);
+        document.getElementById("img2").setAttribute("src", Details[0]["img2"]);
+        document.getElementById("img3").setAttribute("src", Details[0]["img3"]);
+        document.getElementById("img4").setAttribute("src", Details[0]["img4"]);
+
+        document.getElementById('p_title').innerText=Details[0]['product']['title'];
+        document.getElementById('p_price').innerText=`$ ${Details[0]['product']['price']}`;
+        document.getElementById('p_des').innerText=Details[0]['product']['short_des'];
+        document.getElementById('p_details').innerHTML=Details[0]['des'];
+
+        let size= Details[0]['size'].split(',');
+        let color=Details[0]['color'].split(',');
+
+
+        let SizeOption=`<option value=''>Choose Size</option>`;
+        $("#p_size").append(SizeOption);
+        size.forEach((item)=>{
+            let option=`<option value='${item}'>${item}</option>`;
+            $("#p_size").append(option);
+        })
+
+
+        let ColorOption=`<option value=''>Choose Color</option>`;
+        $("#p_color").append(ColorOption);
+        color.forEach((item)=>{
+            let option=`<option value='${item}'>${item}</option>`;
+            $("#p_color").append(option);
+        })
+
+        $('#img1').on('click', function() {
+            $('#product_img1').attr('src', Details[0]['img1']);
+        });
+
+        $('#img2').on('click', function() {
+            $('#product_img1').attr('src', Details[0]['img2']);
+        });
+
+        $('#img3').on('click', function() {
+            $('#product_img1').attr('src', Details[0]['img3']);
+        });
+
+        $('#img4').on('click', function() {
+            $('#product_img1').attr('src', Details[0]['img4']);
+        });
+
+    }
+
+    async function AddToCart() {
+        try{
+            let p_size=document.getElementById('p_size').value;
+            let p_color=document.getElementById('p_color').value;
+            let p_qty=document.getElementById('p_qty').value;
+           
+            if(p_size.length===0){
+                alert("Size Required")
+            }
+            else if(p_color.length===0){
+                alert("Color Required")
+            }
+            else if(p_qty.length===0){
+                alert("Quantity Required")
+            }
+            else{
+                $(".preloader").delay(90).fadeIn(100).removeClass('loaded');
+                let res = await axios.post ("/createCartList", {
+                    product_id: id,
+                    size: p_size,
+                    color: p_color,
+                    qty: p_qty
+                });
+                
+                //$(".preloader").delay(90).fadeOut(100).addClass('loaded');
+                if (res.status === 200) {
+                    alert("Request Successful")
+                }
+            }
+        }catch (e) {
+            if(e.response.status===401){
+                sessionStorage.setItem("last_location",window.location.href)
+                window.location.href="/login"
+            }
+        }
+    }
+    async function AddToWishList() {
+        try{
+            $(".preloader").delay(90).fadeIn(100).removeClass('loaded');
+            let res = await axios.get("/createWishList/"+id);
+            $(".preloader").delay(90).fadeOut(100).addClass('loaded');
+            if (res.status === 200) {
+                alert("Request Successful")
+            }
+        }catch (e) {
+            if(e.response.status===401){
+                sessionStorage.setItem("last_location",window.location.href)
+                window.location.href="/login"
+            }
+        
+        }
+    }
 </script>

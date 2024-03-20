@@ -26,7 +26,6 @@
         </div>
     </div>
 
-    @include('component.TopBrands')
     @include('component.Footer')
     <script>
         (async () => {

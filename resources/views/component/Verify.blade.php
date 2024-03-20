@@ -23,28 +23,27 @@
 
 <script>
     async function verify() {
-
-        let code =document.getElementById('code').value;
-        let email=sessionStorage.getItem('email');
+        let code = document.getElementById('code').value;
+        let email = sessionStorage.getItem('email');
         if (code.length === 0) {
             alert("Code Required!");
-        } else {
+        }
+        else {
             $(".preloader").delay(90).fadeIn(100).removeClass('loaded');
-            let res=await axios.get("/VerifyLogin/"+email+"/"+code);
-            if(res.status===200){
-                    if(sessionStorage.getItem("last_location")){
-                        window.location.href=sessionStorage.getItem("last_location")
-                    }
-                    else{
-                        window.location.href="/"
-                    }
+            let res = await axios.get("/VerifyLogin/" + email + "/" + code);
+            if (res.status === 200) {
+                if (sessionStorage.getItem("last_location")) {
+                    window.location.href = sessionStorage.getItem("last_location")
+                }
+                else {
+                    window.location.href = "/"
+                }
             }
-            else{
+            else {
                 $(".preloader").delay(90).fadeOut(100).addClass('loaded');
                 alert("Request Fail")
             }
         }
-
     }
 </script>
 
