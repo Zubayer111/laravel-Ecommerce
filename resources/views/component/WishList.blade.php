@@ -92,7 +92,7 @@
         $("#byList").empty();
 
         res.data['data'].forEach((item,i)=>{
-            let EachItem=`<div class="col-lg-3 col-md-4 col-6">
+            let EachItem=`<div class="col-lg-3 col-md-4 col-6 mb-5">
                                 <div class="product">
                                     <div class="product_img">
                                         <a href="#">

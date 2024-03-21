@@ -3,7 +3,6 @@
 @section('content')
     @include('component.MenuBar')
     @include('component.PolicyList')
-    @include('component.TopBrands')
     @include('component.Footer')
     <script>
         (async () => {

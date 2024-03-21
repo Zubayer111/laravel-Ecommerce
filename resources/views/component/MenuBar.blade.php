@@ -71,7 +71,7 @@
 
 
 <script>
-    //Category();
+    
     async function Category() {
         let res = await axios.get("/category-list");
         $("#CategoryItem").empty()

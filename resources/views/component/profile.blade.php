@@ -89,7 +89,7 @@
 
 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 mb-5">
             <button onclick="ProfileCreate()" class="btn btn-danger">Save Change</button>
         </div>
     </div>
@@ -155,8 +155,7 @@
           let res = await axios.get("/readProfile");
           
           if (res.data['data'] !== null) {
-
-              document.getElementById('cus_name').value = res.data['data']['cus_name']
+            document.getElementById('cus_name').value = res.data['data']['cus_name']
               document.getElementById('cus_add').value = res.data['data']['cus_add']
               document.getElementById('cus_city').value = res.data['data']['cus_city']
               document.getElementById('cus_state').value = res.data['data']['cus_state']
@@ -171,11 +170,7 @@
               document.getElementById('ship_postcode').value = res.data['data']['ship_postcode']
               document.getElementById('ship_country').value = res.data['data']['ship_country']
               document.getElementById('ship_phone').value = res.data['data']['ship_phone']
-
-
           }
-
-
       }
 
 

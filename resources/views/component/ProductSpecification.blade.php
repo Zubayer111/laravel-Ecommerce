@@ -17,7 +17,7 @@
 
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="details-tab-pane" role="tabpanel" aria-labelledby="details-tab" tabindex="0">
-                   <div id="p_details">
+                   <div id="p_details" class="mb-5">
 
                    </div>
                 </div>
@@ -28,7 +28,7 @@
                 </div>
 
 
-                <div class="tab-pane fade" id="review_create-tab-pane" role="tabpanel" aria-labelledby="review_create-tab" tabindex="0">
+                <div class="tab-pane fade mb-5" id="review_create-tab-pane" role="tabpanel" aria-labelledby="review_create-tab" tabindex="0">
                     <label class="form-label">Write Your Review</label>
                     <textarea class="form-control form-control-sm" id="reviewTextID" rows="5" placeholder="Your Review"></textarea>
                     <label class="form-label mt-2">Rating Score</label>

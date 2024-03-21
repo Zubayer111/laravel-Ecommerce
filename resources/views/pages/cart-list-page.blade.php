@@ -7,7 +7,8 @@
     <script>
         (async () => {
             await CartList();
-           // $(".preloader").delay(90).fadeOut(100).addClass('loaded');
+            await Category();
+           $(".preloader").delay(90).fadeOut(100).addClass('loaded');
         })()
     </script>
 @endsection

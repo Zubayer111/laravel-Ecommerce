@@ -43,10 +43,9 @@
                     <div class="widget">
                         <h6 class="widget_title">My Account</h6>
                         <ul class="widget_links">
-                            <li><a href="#">Profile</a></li>
-                            <li><a href="#">Wish List</a></li>
-                            <li><a href="#">Cart List</a></li>
-                            <li><a href="#">Order History</a></li>
+                            <li><a href="{{url("/profile")}}">Profile</a></li>
+                            <li><a href="{{url("/wish")}}">Wish List</a></li>
+                            <li><a href="{{url("/cart")}}">Cart List</a></li>
                         </ul>
                     </div>
                 </div>

@@ -52,18 +52,16 @@
 </div>
 
 
-{{-- <script>
-
-
+<script>
     async function OrderListRequest() {
         let res= await axios.get("/invoiceList");
-        let json=res.data
-
+        
+        let data =res.data.data;
+        
         $("#OrderList").empty();
 
-
-        if(json.length!==0){
-            json.forEach((item,i)=>{
+        if(data.length !== 0){
+            data.forEach((item,i)=>{
                 let rows=`<tr>
                        <td>${item['id']}</td>
                        <td>$ ${item['payable']} </td>
@@ -72,65 +70,13 @@
                        <td>${item['payment_status']}</td>
                        <td><button data-id=${item['id']} class="btn more btn-danger btn-sm">More</button></td>
                    </tr>`
+
                 $("#OrderList").append(rows);
-            })
+            });
             $(".more").on('click',function () {
                     let id=$(this).data('id');
                     InvoiceProductList(id)
             })
-
-        }
-    }
-   async function InvoiceProductList(id) {
-
-       $(".preloader").delay(90).fadeIn(100).removeClass('loaded');
-       let res= await axios.get("/invoiceDetail/"+id);
-       $("#InvoiceProductModal").modal('show');
-       $(".preloader").delay(90).fadeOut(100).addClass('loaded');
-
-
-
-       $("#productList").empty();
-
-       res.data.forEach((item,i)=>{
-           let rows=`<tr>
-                       <td>${item['product']['title']}</td>
-                        <td>${item['qty']}</td>
-                       <td>$ ${item['sale_price']}</td>
-                   </tr>`
-           $("#productList").append(rows);
-       });
-
-   }
-
-
-</script> --}}
-
-<script>
-    async function OrderListRequest() {
-        let res= await axios.get("/invoiceList");
-        // console.log("Response data:", res.data);
-        let json=res.data;
-
-        $("#OrderList").empty();
-
-        if(json.length!==0){
-            json.forEach((item,i)=>{
-                let rows=`<tr>
-                       <td>${item['id']}</td>
-                       <td>$ ${item['payable']} </td>
-                       <td>${item['ship_details']}</td>
-                       <td>${item['delivery_status']}</td>
-                       <td>${item['payment_status']}</td>
-                       <td><button data-id=${item['id']} class="btn more btn-danger btn-sm">More</button></td>
-                   </tr>`
-
-                $("#OrderList").append(rows);
-            });
-            $(more).on('click',function () {
-                let id=$(this).data('id');
-                InvoiceProductList(id)
-            });
         }
     };
 

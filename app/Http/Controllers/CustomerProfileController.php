@@ -24,7 +24,7 @@ class CustomerProfileController extends Controller
 
     public function ReadProfile(Request $request){
         $userID = $request->header("id");
-        $data = CustomerProfile::where("user_id", $userID)->with("user")->get();
+        $data = CustomerProfile::where("user_id", $userID)->with("user")->first();
         return ResponseHelper::output("success",$data,200);
     }
 }

@@ -16,7 +16,7 @@
         </div>
     </div><!-- END CONTAINER-->
 </div>
-<div class="mt-5">
+<div class="mt-5 mb-5">
     <div class="container my-5">
         <div class="row">
             <div id="policy" class="col-12">

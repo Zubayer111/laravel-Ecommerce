@@ -10,10 +10,10 @@
 
 
 <script>
-    //Hero();
+    
     async function Hero() {
         let res = await axios.get("/list-product-slder");
-        //console.log(res);
+        
         $("#carouselSection").empty()
         
         res.data["data"].forEach((item, i)=>{

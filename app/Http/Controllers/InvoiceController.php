@@ -63,7 +63,7 @@ class InvoiceController extends Controller
             
             $paymentMethod = SSLCommerz::InitiatePayment($profile,$payable,$tran_id,$userEmail);
             DB::commit();
-            return ResponseHelper::output("success", ["paymentMethod" => $paymentMethod, "payable" => $payable, "vat" => $vat, "total" => $total], 200);
+            return ResponseHelper::output("success", array(['paymentMethod'=>$paymentMethod,'payable'=>$payable,'vat'=>$vat,'total'=>$total]), 200);
         }
         catch(Exception $e){
             DB::rollBack();

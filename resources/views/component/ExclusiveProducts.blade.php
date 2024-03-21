@@ -66,11 +66,7 @@
 
 
 <script>
-    // Popular();
-    // New();
-    // Top();
-    // Special();
-    // Trending();
+    
 
     async function Popular() {
         let res = await axios.get("/list-product-remark/popular");
