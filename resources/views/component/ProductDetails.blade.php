@@ -210,22 +210,37 @@
     }
 
     async function AddReview(){
+        
         let reviewText=document.getElementById('reviewTextID').value;
         let reviewScore=document.getElementById('reviewScore').value;
         if(reviewScore.length===0){
-            alert("Score Required !")
+            //alert("Score Required !")
+            alertify.set('notifier','position', 'top-right');
+            alertify.success('Score Required !');
         }
-        else if(reviewText.length===0){
-            alert("Review Required !")
+        else if(reviewText.length === 0){
+           // alert("Review Required !")
+            alertify.set('notifier','position', 'top-right');
+            alertify.success('Review Required !');
         }
         else{
             $(".preloader").delay(90).fadeIn(100).removeClass('loaded');
             let postBody={description:reviewText, rating:reviewScore, product_id:id}
             let res=await axios.post("/createProductReview",postBody);
             $(".preloader").delay(90).fadeOut(100).addClass('loaded');
-            await  productReview();
+            //await  productReview();
+            //console.log(res);
+            if(res.status === 200 && res.data["msg"]=== "success"){
+                document.getElementById("save-form").reset();
+                alertify.set('notifier','position', 'top-right');
+                alertify.success(res.data["data"]);
+               
+                await  productReview();
+            }
+            else{
+                alertify.set('notifier','position', 'top-right');
+                alertify.success(res.data["data"]);
+            }
         }
-
-
     }
 </script>
