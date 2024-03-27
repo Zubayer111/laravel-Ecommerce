@@ -30,7 +30,7 @@ class ProductReviewController extends Controller
             $profile = CustomerProfile::where("user_id", $userId)->first();
             if($profile){
                 $request->merge(["customer_id" => $profile->id]);
-                $data = ProductReview::updateOrCreate(
+                ProductReview::updateOrCreate(
                     ["customer_id" => $profile->id, "product_id" => $request->input("product_id")],
                     $request->input()
                 );

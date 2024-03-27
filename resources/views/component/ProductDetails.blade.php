@@ -143,13 +143,19 @@
             let p_qty=document.getElementById('p_qty').value;
            
             if(p_size.length===0){
-                alert("Size Required")
+                // alert("Size Required")
+                alertify.set('notifier','position', 'top-right');
+                alertify.error('Size Required !');
             }
             else if(p_color.length===0){
-                alert("Color Required")
+                //alert("Color Required")
+                alertify.set('notifier','position', 'top-right');
+                alertify.error('Color Required !');
             }
             else if(p_qty.length===0){
-                alert("Quantity Required")
+                // alert("Quantity Required")
+                alertify.set('notifier','position', 'top-right');
+                alertify.error('Quantity Required !');
             }
             else{
                 $(".preloader").delay(90).fadeIn(100).removeClass('loaded');
@@ -161,9 +167,11 @@
                 });
                 
                 $(".preloader").delay(90).fadeOut(100).addClass('loaded');
-                if (res.status === 200) {
-                    alert("Request Successful")
-                }
+                if(res.status === 200 && res.data["msg"]=== "success"){
+                alertify.set('notifier','position', 'top-right');
+                alertify.success(res.data["data"]);
+                await  productReview();
+            }
             }
         }catch (e) {
             if(e.response.status===401){
@@ -216,12 +224,12 @@
         if(reviewScore.length===0){
             //alert("Score Required !")
             alertify.set('notifier','position', 'top-right');
-            alertify.success('Score Required !');
+            alertify.error('Score Required !');
         }
         else if(reviewText.length === 0){
            // alert("Review Required !")
             alertify.set('notifier','position', 'top-right');
-            alertify.success('Review Required !');
+            alertify.error('Review Required !');
         }
         else{
             $(".preloader").delay(90).fadeIn(100).removeClass('loaded');
@@ -231,7 +239,7 @@
             //await  productReview();
             //console.log(res);
             if(res.status === 200 && res.data["msg"]=== "success"){
-                document.getElementById("save-form").reset();
+                //document.getElementById("save-form").reset();
                 alertify.set('notifier','position', 'top-right');
                 alertify.success(res.data["data"]);
                
@@ -239,7 +247,7 @@
             }
             else{
                 alertify.set('notifier','position', 'top-right');
-                alertify.success(res.data["data"]);
+                alertify.error(res.data["data"]);
             }
         }
     }

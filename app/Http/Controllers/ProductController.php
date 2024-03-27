@@ -34,7 +34,5 @@ class ProductController extends Controller
     }
     
     
-    public function productListByKeyWord(Request $request){
-        
-    }
+    
 }

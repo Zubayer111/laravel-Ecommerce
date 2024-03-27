@@ -26,7 +26,9 @@
         let code = document.getElementById('code').value;
         let email = sessionStorage.getItem('email');
         if (code.length === 0) {
-            alert("Code Required!");
+            // alert("Email Required!");
+            alertify.set('notifier','position', 'top-right');
+                alertify.success('Otp Required !');
         }
         else {
             $(".preloader").delay(90).fadeIn(100).removeClass('loaded');

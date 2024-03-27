@@ -29,22 +29,30 @@ class UserController extends Controller
             return ResponseHelper::output("success","A 6 Digit OTP has been send to your email address",200);
         }
         catch(Exception $e){
-            return ResponseHelper::output("Fail", $e,200);
+            return ResponseHelper::output("Fail", $e->getMessage(),200);
         }
     }
 
     public function verifyLogin(Request $request){
-       $userEmail = $request->email;
-       $otp = $request->otp;
-       $user = User::where("email", $userEmail)->where("otp", $otp)->first();
-
-       if($user){
-        User::where("email", $userEmail)->where("otp", $otp)->update(["otp"=>0]);
-        $token = JWTToken::CreateToken($userEmail,$user->id);
-        return ResponseHelper::output("success", "", 200)->cookie("Token", $token,60*24*30);
+       try{
+        // $request->validate([
+        //     "otp" => "required|min:6|max:6",
+        //    ]);
+           $userEmail = $request->email;
+           $otp = $request->otp;
+           $user = User::where("email", $userEmail)->where("otp", $otp)->first();
+    
+           if($user){
+            User::where("email", $userEmail)->where("otp", $otp)->update(["otp"=>0]);
+            $token = JWTToken::CreateToken($userEmail,$user->id);
+            return ResponseHelper::output("success", "", 200)->cookie("Token", $token,60*24*30);
+           }
+           else{
+            return ResponseHelper::output("Fail", null, 4001);
+           }
        }
-       else{
-        return ResponseHelper::output("Fail", null, 4001);
+       catch(Exception $e){
+        return ResponseHelper::output("Fail", $e->getMessage() , 200);
        }
     }
 
